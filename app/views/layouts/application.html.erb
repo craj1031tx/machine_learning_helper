@@ -5,6 +5,40 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script>
+  	$(document).ready(function(){
+
+
+ 
+	function writeMessage(canvas, message, x, y) {
+       var context = canvas.getContext('2d');
+       context.clearRect(0, 0, canvas.width, canvas.height);
+       context.font = '18pt Calibri';
+       context.fillStyle = 'black';
+       context.fillText(message, x, y);
+     }
+     function getMousePos(canvas, evt) {
+       var rect = canvas.getBoundingClientRect();
+       return {
+         x: evt.clientX - rect.left,
+         y: evt.clientY - rect.top
+       };
+     }
+     var canvas = document.getElementById('myCanvas');
+     var context = canvas.getContext('2d');
+
+     canvas.addEventListener('click', function(evt) {
+       var mousePos = getMousePos(canvas, evt);
+       var message = '1';
+       var x = mousePos.x;
+       var y = mousePos.y;
+       writeMessage(canvas, message, x, y);
+
+     }, false);
+
+	})
+</script>
 </head>
 <body>
 
